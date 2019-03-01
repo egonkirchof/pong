@@ -1,0 +1,72 @@
+.container {
+    margin:auto;
+    align: center;
+    width:500px;
+}
+
+.gameField {
+   height: 360px;
+   background-color: black;
+   border-top: 10px solid darkslategray;
+   border-bottom: 10px solid darkslategray;
+   position:relative;
+}
+
+.score {
+    font-size: 48px;
+    background-color: bisque;
+    color: darkblue;
+    width:100px;
+    margin-bottom:30px;
+    text-align: center;
+}
+
+.brk {
+    clear: both;
+}
+
+.leftScore {
+    float: left;
+}
+
+.rightScore {
+    float: right;
+}
+
+.player {
+    width: 10px;
+    height:60px;
+    background-color: aliceblue;
+
+}
+
+.leftPlayer {
+    position: absolute;
+    top: 120px;
+    left:10px;
+} 
+
+.rightPlayer {
+    position:absolute;
+    top: 120px;
+    left: 480px;
+}
+
+.ball {
+    width: 10px;
+    height: 10px;
+    position:absolute;
+    top:180px;
+    left:250px;
+    background-color: blue;
+
+}
+
+.division {
+    position:absolute;
+    top:0px;
+    left:250px;
+    width:1px;
+    height:350px;
+    border-left: 1px dotted white;
+}
