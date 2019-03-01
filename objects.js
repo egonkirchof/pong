@@ -1,11 +1,10 @@
 "use strict";
 
-var Player = function(domPlayer,domScore,x,y,left,score,speed=8) {
+var Player = function(domPlayer,domScore,x,y,left,score) {
     this.x = x;
     this.y = y;
     this.left = left;
     this.score = score;
-    this.speed = speed;
     this.domPlayer = domPlayer;
     this.domScore = domScore;
     this.height = domPlayer.clientHeight;
@@ -20,6 +19,7 @@ var Ball = function(dom,x,y,dx,dy) {
     this.dy = dy;
     this.dom = dom;
     this.width = dom.ball.clientWidth;
+    this.height = dom.ball.clientHeight;
     this.reset = function(x,y,dx,dy) {
         this.x = x;
         this.y = y;
@@ -27,9 +27,9 @@ var Ball = function(dom,x,y,dx,dy) {
         this.dy = dy;            
     }
 
-    this.move = function(speed) {
-        this.x += this.dx*speed;
-        this.y += this.dy*speed;
+    this.move = function() {
+        this.x += this.dx;
+        this.y += this.dy;
         if(this.y<=0) {
             this.dy = -this.dy;
             this.y = 1;
@@ -39,28 +39,31 @@ var Ball = function(dom,x,y,dx,dy) {
             this.dy = -this.dy;
             this.y = lowerLimit;      
         
-        }
-      
+        }      
         dom.ball.style.top = this.y+"px";
-        dom.ball.style.left = this.x+"px";
+        dom.ball.style.left = this.x+"px";      
         
+    }
+
+    this.out = function() {
         if(this.x <= 0) {
             return 2;
         }
         if(this.x >= (this.dom.gameField.clientWidth-this.dom.ball.clientWidth)) {
             return 1;
         }
-
         return 0;
+
+
     }
     
 };
 
 
-function move(up) {
+function move(up,speed) {
     const lowerLimit = boardHeight-this.height;
     //console.log("moving", this);
-    let newPosition = this.y + this.speed * (up ? -1 : 1);
+    let newPosition = this.y + speed * (up ? -1 : 1);
     //console.log(newPosition,lowerLimit);
     if(newPosition<0 || newPosition>lowerLimit) {
             // console.log("out of screen!");
