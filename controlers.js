@@ -26,25 +26,27 @@ function ai() {  // basic A.I. for player 2
     if(state.pause) return;
     // if(ball.dx <0) return;
 
-    if(ball.dy>0 && (player.y+player.height/2) < ball.y ) {
-        player.move(false,state.playerSpeed);
+    if(ball.dy==0) {
+        if(ball.y < player.y) 
+            player.move(true,1);
+        else if(ball.y > player.y) 
+            player.move(false,1);
+
     }
-    else
-    if(ball.dy<0 && (player.y+player.height/2) > ball.y ) {
-        player.move(true,state.playerSpeed);
+    else if(ball.dy>0 && (player.y+player.height/2) < ball.y ) {
+        player.move(false,1);
+    }
+    else if(ball.dy<0 && (player.y+player.height/2) > ball.y ) {
+        player.move(true,1);
     } 
-    else
-    if(ball.y < player.y) player.move(true,state.playerSpeed);
-    else
-    if(ball.y > player.y) player.move(false,state.playerSpeed);
 }
 
 
 function moveBall() {
     if(!state.pause) {
-        if(state.ball.move()) audioWall.play();
+        if(state.ball.move() && playSounds) audioWall.play();
     }
-    ballTimer = setTimeout( moveBall, state.ballSpeed );
+    ballTimer = setTimeout( moveBall, Math.round(state.ballSpeed) );
     
 }
 function gameController() {
@@ -56,7 +58,8 @@ function gameController() {
         state.ball.dx *= -1;
         state.ball.dy  += Math.random()/1.5;
         if(state.ballSpeed>1) state.ballSpeed -= 0.2;
-        audioHit.play();
+        //console.log(state.ballSpeed);
+        if(playSounds) audioHit.play();
 
    }
    
@@ -67,7 +70,7 @@ function gameController() {
         state.ballSpeed = initialBallSpeed;
         initialBall[1] = state.player[0].y;
         state.ball.reset(...initialBall);
-        audioApplause.play();
+        if(playSounds) audioApplause.play();
         return;      
    }    
 

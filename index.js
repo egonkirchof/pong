@@ -7,7 +7,7 @@ const initialBall = [250,130,-1 , 0];
 const initialBallSpeed = 8;
 const initialLeftPlayer = [10,120];
 const initiaRightPlayer = [480,120];
-const aiSpeed = 80;
+const aiSpeed = 8;
 
 const state = { ids: ids, 
     player : [ new Player(ids.leftPlayer,ids.leftScore,...initialLeftPlayer,true,0), 
@@ -19,15 +19,15 @@ const state = { ids: ids,
 };
 
 function keyListener(event) {
-    const goUp="a";
-    const goDown="s";
+    const goUp=["a","ArrowUp"];
+    const goDown=["s","ArrowDown"];
     //console.log(event.key);
 
-    if (event.key===goUp) {
+    if (goUp.includes(event.key)) {
         if(state.pause) return;
         state.player[0].move(true,state.playerSpeed);
     }
-    else if(event.key===goDown) {
+    else if(goDown.includes(event.key)) {
         if(state.pause) return;
         state.player[0].move(false,state.playerSpeed);
     }
@@ -50,7 +50,11 @@ function reset() {
     state.ball.reset(...initialBall);
 }
 
-var gameInterval,aiInterval,ballTimer;
+function toogleSound(element) {
+    playSounds = element.checked;
+}
+
+var gameInterval,aiInterval,ballTimer,playSounds=true;
 function init() {
     console.log("Init...");
     document.addEventListener("keydown",keyListener);
