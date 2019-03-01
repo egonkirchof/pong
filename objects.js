@@ -9,7 +9,8 @@ var Player = function(domPlayer,domScore,x,y,left,score,speed=8) {
     this.domPlayer = domPlayer;
     this.domScore = domScore;
     this.height = domPlayer.clientHeight;
-    console.log(this.domPLayer);
+    this.width = domPlayer.clientWidth;
+
 };
 
 var Ball = function(dom,x,y,dx,dy) {
@@ -18,6 +19,7 @@ var Ball = function(dom,x,y,dx,dy) {
     this.dx = dx;
     this.dy = dy;
     this.dom = dom;
+    this.width = dom.ball.clientWidth;
     this.reset = function(x,y,dx,dy) {
         this.x = x;
         this.y = y;
@@ -58,7 +60,7 @@ var Ball = function(dom,x,y,dx,dy) {
 function move(up) {
     const lowerLimit = boardHeight-this.height;
     //console.log("moving", this);
-    let newPosition = this.y + this.speed * (up ? 1 : -1);
+    let newPosition = this.y + this.speed * (up ? -1 : 1);
     //console.log(newPosition,lowerLimit);
     if(newPosition<0 || newPosition>lowerLimit) {
             // console.log("out of screen!");
@@ -78,7 +80,6 @@ function scored() {
 Player.prototype.move = move;
 Player.prototype.scored = scored;
 Player.prototype.reset = function(x,y) {
-    console.log(this);
     this.x = x;
     this.y = y;
     this.domPlayer.style.top = this.y+"px";
