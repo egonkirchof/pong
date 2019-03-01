@@ -15,18 +15,19 @@
           <div class="score leftScore" id="leftScore">0</div>
           <div class="score rightScore" id="rightScore">0</div>
           <div class="brk"></div>
-          <div class="gameField">
+          <div class="gameField" id="gameField">
             <div class="player leftPlayer" id="leftPlayer"></div>
             <div class="ball" id="ball"></div>
             <div class="player rightPlayer" id="rightPlayer"></div>
             <div class="division"></div>
-
           </div>  
+          <button class="btn" onclick="reset()">Reset</button>
+          <button class="bt" onclick="pause()">Pause</button>
 
             
         </div>
         <br><br><br>    
-        
+        <script src="domElements.js"></script>        
         <script src="objects.js"></script>
         <script src="index.js"></script>
     </body>

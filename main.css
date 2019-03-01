@@ -10,6 +10,7 @@
    border-top: 10px solid darkslategray;
    border-bottom: 10px solid darkslategray;
    position:relative;
+   padding:0px;
 }
 
 .score {
@@ -37,6 +38,8 @@
     width: 10px;
     height:60px;
     background-color: aliceblue;
+    padding:0px;
+    border: 0px;
 
 }
 
@@ -67,6 +70,6 @@
     top:0px;
     left:250px;
     width:1px;
-    height:350px;
+    height:360px;
     border-left: 1px dotted white;
 }
