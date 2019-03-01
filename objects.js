@@ -28,21 +28,23 @@ var Ball = function(dom,x,y,dx,dy) {
     }
 
     this.move = function() {
+        let changeDirection = false;
         this.x += this.dx;
         this.y += this.dy;
         if(this.y<=0) {
             this.dy = -this.dy;
             this.y = 1;
+            changeDirection = true;
         }
         const lowerLimit = this.dom.gameField.clientHeight-this.dom.ball.clientHeight;
         if(this.y>=lowerLimit) { 
             this.dy = -this.dy;
             this.y = lowerLimit;      
-        
+            changeDirection = true;
         }      
         dom.ball.style.top = this.y+"px";
         dom.ball.style.left = this.x+"px";      
-        
+        return changeDirection;
     }
 
     this.out = function() {
